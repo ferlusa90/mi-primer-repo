@@ -1,0 +1,153 @@
+/* CSS Reset and Variables for a Premium Experience */
+:root {
+  /* Color Palette - Sage, Gold, and Warm Creams */
+  --primary: #223f2d;       /* Forest/Sage dark */
+  --primary-medium: #345c43; /* Medium sage */
+  --primary-light: #528263;  /* Sage accent */
+  --primary-tint: #f0f5f2;   /* Warm light green tint */
+  
+  --accent: #b08d42;        /* Elegant sand gold */
+  --accent-light: #d6b265;  /* Soft sand gold */
+  --accent-tint: #fcf9f2;   /* Warm light sand tint */
+  
+  --bg-main: #f9f8f5;        /* Warm cream background */
+  --bg-card: #ffffff;       /* Pure white for cards */
+  --bg-dark: #121c15;        /* Premium dark green-black */
+  
+  --text-main: #242c27;     /* Soft black with green undertone */
+  --text-muted: #606d64;    /* Muted gray-green */
+  --text-light: #f5f6f5;    /* Light text for dark backgrounds */
+  
+  --border-color: #e5e9e6;  /* Soft border color */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 10px 25px -5px rgba(34, 63, 45, 0.05), 0 8px 10px -6px rgba(34, 63, 45, 0.05);
+  --shadow-lg: 0 20px 40px -10px rgba(34, 63, 45, 0.1), 0 10px 20px -10px rgba(34, 63, 45, 0.05);
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), Georgia, serif;
+  color: var(--primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Global utility classes for premium layouts */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+.section-padding {
+  padding: 6rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 4rem 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-primary {
+  background-color: var(--primary-tint);
+  color: var(--primary-medium);
+}
+
+.badge-accent {
+  background-color: var(--accent-tint);
+  color: var(--accent);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-md);
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
