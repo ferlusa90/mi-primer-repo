@@ -204,7 +204,7 @@ export default function Home() {
                 <h3 className={styles.pricingName}>Alquiler Temporario</h3>
                 <p className={styles.pricingDesc}>Ideal para escapadas de fin de semana, vacaciones familiares o días de descanso.</p>
                 <div className={styles.priceTag}>
-                  $31.250 <span className={styles.priceSub}>/ noche (Lunes a Jueves)</span>
+                  $60.000 <span className={styles.priceSub}>/ noche (Lunes a Jueves)</span>
                 </div>
                 <div className={styles.priceTag} style={{ marginTop: "0.5rem", fontSize: "1.8rem" }}>
                   $75.000 <span className={styles.priceSub}>/ noche (Viernes a Domingo)</span>
@@ -240,14 +240,17 @@ export default function Home() {
               <div className={styles.pricingBadge}>Estadía Larga</div>
               <div className={styles.pricingHeader}>
                 <h3 className={styles.pricingName}>Alquiler Mensual</h3>
-                <p className={styles.pricingDesc}>Para quienes buscan una residencia permanente o prolongada con tarifas exclusivas en pesos.</p>
+                <p className={styles.pricingDesc}>Para quienes buscan una residencia permanente o prolongada con tarifas exclusivas en pesos. Bajo contrato formal.</p>
                 <div className={styles.priceTag}>
-                  $800.000 <span className={styles.priceSub}>/ mes</span>
+                  $800.000 <span className={styles.priceSub}>/ mes (Bajo Contrato)</span>
                 </div>
               </div>
               <ul className={styles.pricingFeatures}>
                 <li className={styles.pricingFeatureItem}>
-                  <Check size={18} className={styles.checkIcon} /> Contrato mínimo de 3 meses
+                  <Check size={18} className={styles.checkIcon} /> Contrato escrito formal de alquiler
+                </li>
+                <li className={styles.pricingFeatureItem}>
+                  <Check size={18} className={styles.checkIcon} /> Período mínimo de 3 meses
                 </li>
                 <li className={styles.pricingFeatureItem}>
                   <Check size={18} className={styles.checkIcon} /> Tarifa corporativa/estudiantil/residencial

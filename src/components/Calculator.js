@@ -75,8 +75,8 @@ export default function Calculator({ onValuesChange }) {
         current.setDate(current.getDate() + 1);
       }
 
-      // Rates: Weekday $31.250, Weekend $75.000 (so 3 weekend nights = $225.000)
-      const standardRate = weekdays * 31250 + weekends * 75000;
+      // Rates: Weekday $60.000, Weekend $75.000
+      const standardRate = weekdays * 60000 + weekends * 75000;
 
       // Promo logic
       // 30 nights: $1.000.000
@@ -115,7 +115,7 @@ export default function Calculator({ onValuesChange }) {
         tempDate.setDate(tempDate.getDate() + 1);
       }
       
-      const leftoverCost = leftoverWeekdays * 31250 + leftoverWeekends * 75000;
+      const leftoverCost = leftoverWeekdays * 60000 + leftoverWeekends * 75000;
 
       // Total promo cost
       const promoCost = (count30 * 1000000) + (count15 * 700000) + (count7 * 350000) + leftoverCost;
@@ -137,7 +137,7 @@ export default function Calculator({ onValuesChange }) {
         promoApplied = "Promoción combinada automática";
       } else {
         finalPrice = standardRate;
-        breakdown.push({ label: `${weekdays} noches de Lunes a Jueves`, value: weekdays * 31250 });
+        breakdown.push({ label: `${weekdays} noches de Lunes a Jueves`, value: weekdays * 60000 });
         breakdown.push({ label: `${weekends} noches de Viernes a Domingo`, value: weekends * 75000 });
       }
 
@@ -209,7 +209,7 @@ export default function Calculator({ onValuesChange }) {
       const pricePerMonth = 800000; // $800.000 ARS per month
       const finalPrice = pricePerMonth * months;
       const breakdown = [
-        { label: `${months} meses de alquiler`, value: finalPrice }
+        { label: `${months} meses de alquiler (Bajo Contrato)`, value: finalPrice }
       ];
 
       const result = {
@@ -236,7 +236,7 @@ export default function Calculator({ onValuesChange }) {
       if (d === 5 || d === 6 || d === 0) we++; else w++;
       date.setDate(date.getDate() + 1);
     }
-    return w * 31250 + we * 75000;
+    return w * 60000 + we * 75000;
   }
 
   const handleTabChange = (type) => {
@@ -273,7 +273,7 @@ export default function Calculator({ onValuesChange }) {
           className={`${styles.tabBtn} ${rentType === "mensual" ? styles.activeTab : ""}`}
           onClick={() => handleTabChange("mensual")}
         >
-          Alquiler Mensual
+          Alquiler Mensual (Contrato)
         </button>
       </div>
 
@@ -307,7 +307,7 @@ export default function Calculator({ onValuesChange }) {
         ) : (
           <div className={styles.inputGroup}>
             <label className={styles.label}>
-              Cantidad de Meses (Mínimo 3)
+              Cantidad de Meses (Contrato de Mín. 3)
             </label>
             <select
               className={styles.select}
@@ -380,7 +380,7 @@ export default function Calculator({ onValuesChange }) {
           </button>
 
           <p className={styles.disclaimer}>
-            <AlertCircle size={14} /> Los precios son orientativos y quedan sujetos a confirmación por WhatsApp según la temporada. En mensual, no incluye servicios ni mantenimiento.
+            <AlertCircle size={14} /> Los precios son orientativos y quedan sujetos a confirmación por WhatsApp según la temporada. En mensual, no incluye servicios ni mantenimiento. Alquiler mensual formalizado bajo contrato.
           </p>
         </div>
       ) : null}
