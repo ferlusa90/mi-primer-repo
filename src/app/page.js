@@ -204,10 +204,10 @@ export default function Home() {
                 <h3 className={styles.pricingName}>Alquiler Temporario</h3>
                 <p className={styles.pricingDesc}>Ideal para escapadas de fin de semana, vacaciones familiares o días de descanso.</p>
                 <div className={styles.priceTag}>
-                  $40.000 <span className={styles.priceSub}>/ noche (Domingo a Jueves)</span>
+                  $31.250 <span className={styles.priceSub}>/ noche (Lunes a Jueves)</span>
                 </div>
                 <div className={styles.priceTag} style={{ marginTop: "0.5rem", fontSize: "1.8rem" }}>
-                  $75.000 <span className={styles.priceSub}>/ noche (Viernes y Sábado)</span>
+                  $75.000 <span className={styles.priceSub}>/ noche (Viernes a Domingo)</span>
                 </div>
               </div>
               <ul className={styles.pricingFeatures}>

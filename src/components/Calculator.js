@@ -58,16 +58,16 @@ export default function Calculator({ onValuesChange }) {
         return;
       }
 
-      // Calculate weekdays (Sunday to Thursday nights) and weekends (Friday & Saturday nights)
+      // Calculate weekdays (Mon-Thu nights) and weekends (Fri, Sat, Sun nights)
       let current = new Date(startDate || new Date());
       let weekdays = 0;
       let weekends = 0;
 
       for (let i = 0; i < nights; i++) {
         const day = current.getDay(); // 0 is Sunday, 1-4 is Mon-Thu, 5 is Friday, 6 is Saturday
-        // Viernes (5) y Sábado (6) son fin de semana.
-        // Domingo (0), Lunes (1), Martes (2), Miércoles (3), Jueves (4) son días de semana.
-        if (day === 5 || day === 6) {
+        // Viernes (5), Sábado (6) y Domingo (0) son de fin de semana.
+        // Lunes (1), Martes (2), Miércoles (3) y Jueves (4) son días de semana.
+        if (day === 5 || day === 6 || day === 0) {
           weekends++;
         } else {
           weekdays++;
@@ -75,8 +75,8 @@ export default function Calculator({ onValuesChange }) {
         current.setDate(current.getDate() + 1);
       }
 
-      // Rates: Weekday $40.000, Weekend $75.000 (so 2 weekend nights = $150.000)
-      const standardRate = weekdays * 40000 + weekends * 75000;
+      // Rates: Weekday $31.250, Weekend $75.000 (so 3 weekend nights = $225.000)
+      const standardRate = weekdays * 31250 + weekends * 75000;
 
       // Promo logic
       // 30 nights: $1.000.000
@@ -107,7 +107,7 @@ export default function Calculator({ onValuesChange }) {
       tempDate.setDate(tempDate.getDate() + (nights - remainingNights));
       for (let i = 0; i < remainingNights; i++) {
         const day = tempDate.getDay();
-        if (day === 5 || day === 6) {
+        if (day === 5 || day === 6 || day === 0) {
           leftoverWeekends++;
         } else {
           leftoverWeekdays++;
@@ -115,7 +115,7 @@ export default function Calculator({ onValuesChange }) {
         tempDate.setDate(tempDate.getDate() + 1);
       }
       
-      const leftoverCost = leftoverWeekdays * 40000 + leftoverWeekends * 75000;
+      const leftoverCost = leftoverWeekdays * 31250 + leftoverWeekends * 75000;
 
       // Total promo cost
       const promoCost = (count30 * 1000000) + (count15 * 700000) + (count7 * 350000) + leftoverCost;
@@ -137,8 +137,8 @@ export default function Calculator({ onValuesChange }) {
         promoApplied = "Promoción combinada automática";
       } else {
         finalPrice = standardRate;
-        breakdown.push({ label: `${weekdays} noches de Domingo a Jueves`, value: weekdays * 40000 });
-        breakdown.push({ label: `${weekends} noches de Viernes a Sábado`, value: weekends * 75000 });
+        breakdown.push({ label: `${weekdays} noches de Lunes a Jueves`, value: weekdays * 31250 });
+        breakdown.push({ label: `${weekends} noches de Viernes a Domingo`, value: weekends * 75000 });
       }
 
       // Check for suggestions to buy more nights to save money (Smart Recommendations)
@@ -233,10 +233,10 @@ export default function Calculator({ onValuesChange }) {
     let w = 0, we = 0;
     for (let i = 0; i < numNights; i++) {
       const d = date.getDay();
-      if (d === 5 || d === 6) we++; else w++;
+      if (d === 5 || d === 6 || d === 0) we++; else w++;
       date.setDate(date.getDate() + 1);
     }
-    return w * 40000 + we * 75000;
+    return w * 31250 + we * 75000;
   }
 
   const handleTabChange = (type) => {
