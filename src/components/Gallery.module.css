@@ -20,19 +20,18 @@
   height: 280px;
 }
 
-/* Bento Grid Spans */
+/* Bento Grid Spans (Balanced for 11 Items) */
 .galleryItem:nth-child(1) { grid-column: span 6; height: 380px; }
 .galleryItem:nth-child(2) { grid-column: span 6; height: 380px; }
 .galleryItem:nth-child(3) { grid-column: span 4; }
 .galleryItem:nth-child(4) { grid-column: span 4; }
 .galleryItem:nth-child(5) { grid-column: span 4; }
-.galleryItem:nth-child(6) { grid-column: span 3; }
-.galleryItem:nth-child(7) { grid-column: span 3; }
-.galleryItem:nth-child(8) { grid-column: span 6; }
+.galleryItem:nth-child(6) { grid-column: span 6; }
+.galleryItem:nth-child(7) { grid-column: span 6; }
+.galleryItem:nth-child(8) { grid-column: span 4; }
 .galleryItem:nth-child(9) { grid-column: span 4; }
 .galleryItem:nth-child(10) { grid-column: span 4; }
-.galleryItem:nth-child(11) { grid-column: span 4; }
-.galleryItem:nth-child(12) { grid-column: span 12; height: 400px; }
+.galleryItem:nth-child(11) { grid-column: span 12; height: 400px; }
 
 .imageWrapper {
   width: 100%;

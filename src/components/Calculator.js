@@ -1,22 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Calendar, DollarSign, AlertCircle, TrendingDown, ArrowRight } from "lucide-react";
+import { Calendar, AlertCircle, TrendingDown, ArrowRight } from "lucide-react";
 import styles from "./Calculator.module.css";
 
-// Helper to format currency
+// Helper to format currency in ARS
 const formatARS = (amount) => {
   return new Intl.NumberFormat("es-AR", {
     style: "currency",
     currency: "ARS",
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
-
-const formatUSD = (amount) => {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
     maximumFractionDigits: 0,
   }).format(amount);
 };
@@ -66,28 +58,29 @@ export default function Calculator({ onValuesChange }) {
         return;
       }
 
-      // Calculate weekdays and weekends
+      // Calculate weekdays (Sunday to Thursday nights) and weekends (Friday & Saturday nights)
       let current = new Date(startDate || new Date());
       let weekdays = 0;
       let weekends = 0;
 
       for (let i = 0; i < nights; i++) {
-        const day = current.getDay(); // 0 is Sunday, 1-4 is Mon-Thu, 5-6 is Fri-Sat
-        // Lunes a Jueves: 1, 2, 3, 4
-        // Viernes a Domingo: 5, 6, 0
-        if (day >= 1 && day <= 4) {
-          weekdays++;
-        } else {
+        const day = current.getDay(); // 0 is Sunday, 1-4 is Mon-Thu, 5 is Friday, 6 is Saturday
+        // Viernes (5) y Sábado (6) son fin de semana.
+        // Domingo (0), Lunes (1), Martes (2), Miércoles (3), Jueves (4) son días de semana.
+        if (day === 5 || day === 6) {
           weekends++;
+        } else {
+          weekdays++;
         }
         current.setDate(current.getDate() + 1);
       }
 
-      const standardRate = weekdays * 120000 + weekends * 150000;
+      // Rates: Weekday $40.000, Weekend $75.000 (so 2 weekend nights = $150.000)
+      const standardRate = weekdays * 40000 + weekends * 75000;
 
       // Promo logic
       // 30 nights: $1.000.000
-      // 15 nights: $600.000
+      // 15 nights: $700.000
       // 7 nights: $350.000
       
       let promoApplied = "";
@@ -107,7 +100,6 @@ export default function Calculator({ onValuesChange }) {
       remainingNights %= 7;
 
       // For the leftover nights, calculate their individual weekday/weekend rates
-      // based on the end of the stay
       let leftoverWeekdays = 0;
       let leftoverWeekends = 0;
       let tempDate = new Date(startDate || new Date());
@@ -115,18 +107,18 @@ export default function Calculator({ onValuesChange }) {
       tempDate.setDate(tempDate.getDate() + (nights - remainingNights));
       for (let i = 0; i < remainingNights; i++) {
         const day = tempDate.getDay();
-        if (day >= 1 && day <= 4) {
-          leftoverWeekdays++;
-        } else {
+        if (day === 5 || day === 6) {
           leftoverWeekends++;
+        } else {
+          leftoverWeekdays++;
         }
         tempDate.setDate(tempDate.getDate() + 1);
       }
       
-      const leftoverCost = leftoverWeekdays * 120000 + leftoverWeekends * 150000;
+      const leftoverCost = leftoverWeekdays * 40000 + leftoverWeekends * 75000;
 
       // Total promo cost
-      const promoCost = (count30 * 1000000) + (count15 * 600000) + (count7 * 350000) + leftoverCost;
+      const promoCost = (count30 * 1000000) + (count15 * 700000) + (count7 * 350000) + leftoverCost;
 
       // Choose the cheaper option between pure standard rate or promo block combinations
       if (promoCost < standardRate) {
@@ -134,7 +126,7 @@ export default function Calculator({ onValuesChange }) {
         savings = standardRate - promoCost;
 
         if (count30 > 0) breakdown.push({ label: `${count30}x Promo 30 noches`, value: count30 * 1000000 });
-        if (count15 > 0) breakdown.push({ label: `${count15}x Promo 15 noches`, value: count15 * 600000 });
+        if (count15 > 0) breakdown.push({ label: `${count15}x Promo 15 noches`, value: count15 * 700000 });
         if (count7 > 0) breakdown.push({ label: `${count7}x Promo 7 noches`, value: count7 * 350000 });
         if (remainingNights > 0) {
           breakdown.push({
@@ -145,8 +137,8 @@ export default function Calculator({ onValuesChange }) {
         promoApplied = "Promoción combinada automática";
       } else {
         finalPrice = standardRate;
-        breakdown.push({ label: `${weekdays} noches de Lunes a Jueves`, value: weekdays * 120000 });
-        breakdown.push({ label: `${weekends} noches de Viernes a Domingo`, value: weekends * 150000 });
+        breakdown.push({ label: `${weekdays} noches de Domingo a Jueves`, value: weekdays * 40000 });
+        breakdown.push({ label: `${weekends} noches de Viernes a Sábado`, value: weekends * 75000 });
       }
 
       // Check for suggestions to buy more nights to save money (Smart Recommendations)
@@ -165,7 +157,7 @@ export default function Calculator({ onValuesChange }) {
       } 
       // Suggest 15 nights if staying 12, 13, 14 nights and 15 is cheaper
       else if (nights >= 10 && nights < 15) {
-        const nextPromoPrice = 600000;
+        const nextPromoPrice = 700000;
         const currentBestWith7 = 350000 + (getStandardPriceForLeftover(startDate, 7, nights - 7));
         const effectivePrice = Math.min(finalPrice, currentBestWith7);
         if (nextPromoPrice < effectivePrice) {
@@ -214,7 +206,7 @@ export default function Calculator({ onValuesChange }) {
         return;
       }
 
-      const pricePerMonth = 800;
+      const pricePerMonth = 800000; // $800.000 ARS per month
       const finalPrice = pricePerMonth * months;
       const breakdown = [
         { label: `${months} meses de alquiler`, value: finalPrice }
@@ -241,10 +233,10 @@ export default function Calculator({ onValuesChange }) {
     let w = 0, we = 0;
     for (let i = 0; i < numNights; i++) {
       const d = date.getDay();
-      if (d >= 1 && d <= 4) w++; else we++;
+      if (d === 5 || d === 6) we++; else w++;
       date.setDate(date.getDate() + 1);
     }
-    return w * 120000 + we * 150000;
+    return w * 40000 + we * 75000;
   }
 
   const handleTabChange = (type) => {
@@ -341,9 +333,7 @@ export default function Calculator({ onValuesChange }) {
           <div className={styles.resultsHeader}>
             <span className={styles.resultTitle}>Presupuesto Estimado</span>
             <div className={styles.price}>
-              {rentType === "temporario"
-                ? formatARS(calculation.finalPrice)
-                : formatUSD(calculation.finalPrice)}
+              {formatARS(calculation.finalPrice)}
               <span className={styles.priceUnit}>
                 {rentType === "temporario" ? ` / ${nights} noches` : ` / ${months} meses`}
               </span>
@@ -374,15 +364,13 @@ export default function Calculator({ onValuesChange }) {
             {calculation.breakdown.map((item, idx) => (
               <div key={idx} className={styles.breakdownRow}>
                 <span>{item.label}</span>
-                <span>{rentType === "temporario" ? formatARS(item.value) : formatUSD(item.value)}</span>
+                <span>{formatARS(item.value)}</span>
               </div>
             ))}
             <div className={styles.breakdownTotal}>
               <span>Total Estimado</span>
               <span>
-                {rentType === "temporario"
-                  ? formatARS(calculation.finalPrice)
-                  : formatUSD(calculation.finalPrice)}
+                {formatARS(calculation.finalPrice)}
               </span>
             </div>
           </div>

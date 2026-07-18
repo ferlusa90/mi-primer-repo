@@ -6,18 +6,17 @@ import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import styles from "./Gallery.module.css";
 
 const IMAGES = [
-  { id: 1, src: "/images/foto1.jpg", title: "Piscina y Solárium", category: "Exterior", alt: "Piscina rodeada de parque verde y reposeras" },
-  { id: 2, src: "/images/foto2.jpg", title: "Parque y Fachada", category: "Exterior", alt: "Vista de la fachada exterior de la casa con amplio parque arbolado" },
-  { id: 3, src: "/images/foto3.jpg", title: "Galería Exterior", category: "Exterior", alt: "Galería techada con columnas de ladrillo visto" },
-  { id: 4, src: "/images/foto4.jpg", title: "Jardín y Entrada", category: "Exterior", alt: "Vista lateral del jardín y acceso principal a la propiedad" },
-  { id: 5, src: "/images/foto5.jpg", title: "Quincho y Parrilla", category: "Comodidades", alt: "Espacio de asador y quincho con mesa para reuniones" },
-  { id: 6, src: "/images/foto6.jpg", title: "Área de Descanso", category: "Exterior", alt: "Zona de sombra bajo los árboles para relajarse" },
-  { id: 7, src: "/images/foto7.jpg", title: "Living Principal", category: "Interior", alt: "Sala de estar luminosa con sillones y decoración cálida" },
-  { id: 8, src: "/images/foto8.jpg", title: "Cocina Comedor", category: "Interior", alt: "Cocina equipada integrada con mesa de comedor diaria" },
-  { id: 9, src: "/images/foto9.jpg", title: "Dormitorio Principal", category: "Interior", alt: "Habitación matrimonial amplia con cama doble y ventanal" },
-  { id: 10, src: "/images/foto10.jpg", title: "Dormitorio Secundario", category: "Interior", alt: "Habitación adicional con camas individuales ideal para niños" },
-  { id: 11, src: "/images/foto11.png", title: "Baño Completo", category: "Interior", alt: "Cuarto de baño completo con sanitarios y grifería moderna" },
-  { id: 12, src: "/images/foto12.jpg", title: "Entorno Natural y Privacidad", category: "Exterior", alt: "Parque trasero con frondosos árboles que garantizan la privacidad" },
+  { id: 1, src: "/images/foto2.jpg", title: "Parque y Fachada", category: "Exterior", alt: "Vista de la fachada exterior de la casa con amplio parque arbolado" },
+  { id: 2, src: "/images/foto3.jpg", title: "Galería Exterior", category: "Exterior", alt: "Galería techada con columnas de ladrillo visto" },
+  { id: 3, src: "/images/foto4.jpg", title: "Jardín y Entrada", category: "Exterior", alt: "Vista lateral del jardín y acceso principal a la propiedad" },
+  { id: 4, src: "/images/foto5.jpg", title: "Quincho y Parrilla", category: "Comodidades", alt: "Espacio de asador y quincho con mesa para reuniones" },
+  { id: 5, src: "/images/foto6.jpg", title: "Área de Descanso", category: "Exterior", alt: "Zona de sombra bajo los árboles para relajarse" },
+  { id: 6, src: "/images/foto7.jpg", title: "Living Principal", category: "Interior", alt: "Sala de estar luminosa con sillones y decoración cálida" },
+  { id: 7, src: "/images/foto8.jpg", title: "Cocina Comedor", category: "Interior", alt: "Cocina equipada integrada con mesa de comedor diaria" },
+  { id: 8, src: "/images/foto9.jpg", title: "Dormitorio Principal", category: "Interior", alt: "Habitación matrimonial amplia con cama doble y ventanal" },
+  { id: 9, src: "/images/foto10.jpg", title: "Dormitorio Secundario", category: "Interior", alt: "Habitación adicional con camas individuales ideal para niños" },
+  { id: 10, src: "/images/foto11.png", title: "Baño Completo", category: "Interior", alt: "Cuarto de baño completo con sanitarios y grifería moderna" },
+  { id: 11, src: "/images/foto12.jpg", title: "Entorno Natural y Privacidad", category: "Exterior", alt: "Parque trasero con frondosos árboles que garantizan la privacidad" },
 ];
 
 export default function Gallery() {

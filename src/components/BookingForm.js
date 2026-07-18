@@ -111,9 +111,7 @@ export default function BookingForm({ calculatorValues }) {
 
     // Add estimated price if it matches calculator values
     if (calculatorValues && !calculatorValues.error && calculatorValues.finalPrice) {
-      const formattedPrice = calculatorValues.rentType === "temporario"
-        ? new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(calculatorValues.finalPrice)
-        : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(calculatorValues.finalPrice);
+      const formattedPrice = new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(calculatorValues.finalPrice);
       
       message += `\n*Presupuesto Estimado:* ${formattedPrice}`;
     }

@@ -81,8 +81,8 @@ export default function Home() {
       <section className={styles.hero} id="inicio">
         <div className={styles.heroImageWrapper}>
           <Image
-            src="/images/foto1.jpg"
-            alt="Piscina y exterior de la propiedad al atardecer"
+            src="/images/foto2.jpg"
+            alt="Fachada de la casa y parque arbolado"
             fill
             priority
             className={styles.heroImage}
@@ -204,10 +204,10 @@ export default function Home() {
                 <h3 className={styles.pricingName}>Alquiler Temporario</h3>
                 <p className={styles.pricingDesc}>Ideal para escapadas de fin de semana, vacaciones familiares o días de descanso.</p>
                 <div className={styles.priceTag}>
-                  $120.000 <span className={styles.priceSub}>/ noche (Lunes a Jueves)</span>
+                  $40.000 <span className={styles.priceSub}>/ noche (Domingo a Jueves)</span>
                 </div>
                 <div className={styles.priceTag} style={{ marginTop: "0.5rem", fontSize: "1.8rem" }}>
-                  $150.000 <span className={styles.priceSub}>/ noche (Viernes a Domingo)</span>
+                  $75.000 <span className={styles.priceSub}>/ noche (Viernes y Sábado)</span>
                 </div>
               </div>
               <ul className={styles.pricingFeatures}>
@@ -218,7 +218,7 @@ export default function Home() {
                   <Check size={18} className={styles.checkIcon} /> <strong>Promo 7 noches:</strong> $350.000 <span style={{color: "var(--accent)", fontWeight: 650}}>(Ahorro importante)</span>
                 </li>
                 <li className={styles.pricingFeatureItem}>
-                  <Check size={18} className={styles.checkIcon} /> <strong>Promo 15 noches:</strong> $600.000
+                  <Check size={18} className={styles.checkIcon} /> <strong>Promo 15 noches:</strong> $700.000
                 </li>
                 <li className={styles.pricingFeatureItem}>
                   <Check size={18} className={styles.checkIcon} /> <strong>Promo 30 noches:</strong> $1.000.000
@@ -240,9 +240,9 @@ export default function Home() {
               <div className={styles.pricingBadge}>Estadía Larga</div>
               <div className={styles.pricingHeader}>
                 <h3 className={styles.pricingName}>Alquiler Mensual</h3>
-                <p className={styles.pricingDesc}>Para quienes buscan una residencia permanente o prolongada con tarifas exclusivas en USD.</p>
+                <p className={styles.pricingDesc}>Para quienes buscan una residencia permanente o prolongada con tarifas exclusivas en pesos.</p>
                 <div className={styles.priceTag}>
-                  USD 800 <span className={styles.priceSub}>/ mes</span>
+                  $800.000 <span className={styles.priceSub}>/ mes</span>
                 </div>
               </div>
               <ul className={styles.pricingFeatures}>
